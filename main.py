@@ -1,5 +1,7 @@
+#!env/bin/python
 import requests
 import youtube_dl
+import sys
 
 def get_id(url: str):
     id = url.partition('track/')[2]\
@@ -19,6 +21,7 @@ def get_yt_link(track_id: str):
 
     return yt_link
 
+'''
 def download_music(link: str):
     ydl_opts = {
         'format': 'bestaudio/best',
@@ -30,12 +33,16 @@ def download_music(link: str):
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([link])
+'''
 
 def main():
-    url = 'https://www.shazam.com/ru/track/616490430/neon-blade'
-    track_id = get_id(url)
+    if len(sys.argv) != 2:
+        exit('not link')
+    track_id = get_id(sys.argv[1])
+    # url = 'https://www.shazam.com/ru/track/616490430/neon-blade'
     yt_link = get_yt_link(track_id)
-    download_music(yt_link)
+    print(yt_link)
+    # download_music(yt_link)
 
 if __name__=='__main__':
     main()

@@ -1,0 +1,8 @@
+#!/bin/bash
+#./main.py $1 | ./youtube-dl --audio-format mp3 -o '%(title)s.%(ext)s' -x
+
+path='~/Загрузки'
+
+link=`./main.py $1`
+# echo $link
+./youtube-dl --audio-format mp3 -o "$path/%(title)s.%(ext)s" -x $link
